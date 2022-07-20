@@ -4,7 +4,7 @@ import { colors } from '../../common/colors'
 
 import { Dimensions } from "react-native";
 import CHTextInput from "../../common/CHTextInput/CHTextInput";
-import ButtonGeneric from "../../common/ButtonGeneric/ButtonGeneric";
+import CHButtonGeneric from "../../common/CHButtonGeneric/CHButtonGeneric";
 import { images } from '../../common/images';
 import Markdown, { getUniqueID } from 'react-native-markdown-renderer';
 
@@ -36,7 +36,7 @@ const Login = (props) => {
   }
 
   const handleLogIn = () => {
-    alert("[handleLogIn]");
+    navigation.navigate("Home");
   }
 
   const handleSignUp = () => {
@@ -62,7 +62,7 @@ const Login = (props) => {
               <Text style={styles.textForgotPass}>Forgot Password?</Text>
             </Pressable>
           </View>
-          <ButtonGeneric
+          <CHButtonGeneric
             onPress={handleLogIn}
             style={styles.textInputStyle}
             text={"Log-in"}

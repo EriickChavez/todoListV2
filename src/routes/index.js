@@ -5,29 +5,43 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ForgotPassword from "../pages/forgot-password/forgot-password";
 import LogIn from "../pages/log-in/Login";
 import SignUp from "../pages/sign-up/sign-up";
+import Home from "../pages/home/index";
+import FullScreenTask from "../components/tasks/fullScreen-tasks";
 
 const Stack = createNativeStackNavigator();
 
 function App() {
-    const options = {headerShown:false}
+    const options = { headerShown: false }
     return (
         <NavigationContainer>
             <Stack.Navigator>
                 <Stack.Screen
                     name="LogIn"
                     component={LogIn}
-                    options={options} 
-                    />
+                    options={options}
+                />
                 <Stack.Screen
                     name="SignUp"
                     component={SignUp}
-                    options={options} 
+                    options={options}
                 />
                 <Stack.Screen
                     name="ForgotPassword"
                     component={ForgotPassword}
-                    // options={options} 
+                // options={options} 
                 />
+                <Stack.Screen
+                    name="Home"
+                    component={Home}
+                    options={options} 
+                />
+                <Stack.Group screenOptions={{ presentation: 'modal' }}>
+                    <Stack.Screen
+                        name="FullScreenTask"
+                        component={FullScreenTask}
+                        options={options} 
+                    />
+                </Stack.Group>
             </Stack.Navigator>
         </NavigationContainer>
     );

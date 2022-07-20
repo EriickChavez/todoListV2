@@ -3,20 +3,20 @@ import PropTypes from 'prop-types'
 import React from 'react'
 
 const ButtonGeneric = (props) => {
-    const { 
+    const {
         BG_Color,
         style,
         TXT_Color,
         text,
         uppercase
     } = props;
-    
+
     return (
-        <TouchableOpacity 
-        activeOpacity={0.7}
-        {...props} 
-        style={[styles.buttonGenericStyles, style, { backgroundColor: BG_Color }]}>
-            <Text style={{color:TXT_Color}}>{uppercase? text.toUpperCase(): text}</Text>
+        <TouchableOpacity
+            activeOpacity={0.7}
+            {...props}
+            style={[styles.buttonGenericStyles, style, { backgroundColor: BG_Color }]}>
+            <Text style={{ color: TXT_Color }}>{uppercase ? text.toUpperCase() : text}</Text>
         </TouchableOpacity>
     )
 }
@@ -33,7 +33,7 @@ ButtonGeneric.defaultProps = {
     BG_Color: '#F79E89',
     TXT_Color: 'white',
     uppercase: false,
-    text:""
+    text: ""
 }
 
 const styles = StyleSheet.create({

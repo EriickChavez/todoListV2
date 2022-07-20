@@ -4,7 +4,7 @@ import { colors } from '../../common/colors'
 
 import { Dimensions } from "react-native";
 import CHTextInput from "../../common/CHTextInput/CHTextInput";
-import ButtonGeneric from "../../common/ButtonGeneric/ButtonGeneric";
+import CHButtonGeneric from "../../common/CHButtonGeneric/CHButtonGeneric";
 import { images } from '../../common/images';
 import Markdown, { getUniqueID } from 'react-native-markdown-renderer';
 
@@ -41,7 +41,7 @@ const Login = () => {
         <View style={{ flex: .3, padding: 10 }}>
           <CHTextInput placeholder={"Password"} style={styles.textInputStyle} />
           <CHTextInput placeholder={"Confirm Password"} style={styles.textInputStyle} />
-          <ButtonGeneric
+          <CHButtonGeneric
             style={styles.containerNewAccount} 
             uppercase
             text={"change password"}
