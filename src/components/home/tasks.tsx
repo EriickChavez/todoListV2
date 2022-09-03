@@ -2,37 +2,46 @@ import { View, Text, StyleSheet, Pressable } from 'react-native'
 import React from 'react'
 import { colors } from '../../common/colors'
 import Icon from '../../common/svg'
+import TaskModel from '../../models/TaskModel'
 
 export type Props = {
-  title?: string,
-  description?: string,
-  createdAt?: string,
-  type?: string,
+  task: TaskModel
   index?: number,
-  onPress?: (arg) => null
+  onPress?: Function
 }
 
 const Tasks: React.FC<Props> = ({
-  title = "",
-  description = "",
-  createdAt = Date.now(),
-  type = "",
+  task,
   index = 0,
-  onPress = (arg) => null,
+  onPress = () => null,
 }) => {
+  const { 
+    id,
+    title,
+    description,
+    deadline,
+    URLImage,
+    type,
+    createdAt
+  } = task;
+
 
   const dateFormat = (date: Date) => date.toDateString()
 
   return (
     <Pressable
-      onPress={() => onPress(index)}
+      onPress={() => onPress(id)}
       style={[styles.container, index % 2 == 0 ? styles.color1 : styles.color2]}>
       <View style={styles.header}>
-        <Text numberOfLines={1} style={styles.title}>{(index+1) + " " + title}</Text>
+        <Text numberOfLines={1} style={styles.title}>{ title }</Text>
         <Icon name={'clock'} button size={24} color={"#FFFFFF"} />
       </View>
       <Text style={styles.description} numberOfLines={2}>
-        {(index+1) + " " + description}
+        {
+          /* Borrar esta linea */
+          "ID: " + id + " - "
+        }
+        {description}
       </Text>
 
       <View>

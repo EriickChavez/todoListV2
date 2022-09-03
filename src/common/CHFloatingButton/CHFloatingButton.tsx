@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
 import Icon from '../svg'
 import { colors } from '../colors'
@@ -12,11 +12,12 @@ export type Props = {
     onPress?: () => null
 }
 
-const CHFloatingButton = () => {
+const CHFloatingButton = ({onPress}) => {
+
     return (
-        <View style={styles.container}>
+        <Pressable onPress={onPress} style={styles.container}>
             <Icon name='plus' size={25} color={colors.WHITE} />
-        </View>
+        </Pressable>
     )
 }
 

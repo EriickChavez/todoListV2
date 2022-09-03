@@ -27,20 +27,13 @@ const rules = {
 }
 
 const SignUp = (props) => {
-  const test = "# Have an account? **Log in**"
+  const test:string = "# Have an account? **Log in**"
   const { navigation } = props
 
-  const handleForgotPassword = () => {
-    navigation.navigate("ForgotPassword");
-  }
+  const handleForgotPassword = () => navigation.navigate("ForgotPassword") 
+  const handleLogIn = () => navigation.navigate("LogIn") 
+  const handleSignUp = () => alert("[handleSignUp]")
 
-  const handleLogIn = () => {
-    navigation.navigate("LogIn");
-  }
-  
-  const handleSignUp = () => {
-    alert("[handleSignUp]");
-  }
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={{ flex: 1 }}>

@@ -3,15 +3,12 @@
 import { Text, View } from 'react-native'
 import React, { Component } from 'react'
 
-class Index extends Component {
-  render() {
-    console.log("[props]",this.props);
+const Index = () => {
     return (
-      <View>
-        <Text>index</Text>
-      </View>
+        <View>
+            <Text>Index</Text>
+        </View>
     )
-  }
 }
 
 

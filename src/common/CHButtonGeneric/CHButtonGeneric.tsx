@@ -2,7 +2,16 @@ import { View, Text, StyleSheet, TouchableOpacity } from 'react-native'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-const ButtonGeneric = (props) => {
+interface ButtonGenericProps {
+    BG_Color: string,
+    style: {},
+    TXT_Color: string,
+    text: string,
+    uppercase: boolean
+}
+
+
+const ButtonGeneric = (props:ButtonGenericProps) => {
     const {
         BG_Color,
         style,
@@ -26,14 +35,16 @@ ButtonGeneric.propTypes = {
     BG_Color: PropTypes.string,
     TXT_Color: PropTypes.string,
     text: PropTypes.string,
-    uppercase: PropTypes.bool
+    uppercase: PropTypes.bool,
+    onPress: PropTypes.func
 }
 ButtonGeneric.defaultProps = {
     style: {},
     BG_Color: '#F79E89',
     TXT_Color: 'white',
     uppercase: false,
-    text: ""
+    text: "",
+    onPress: () => {}
 }
 
 const styles = StyleSheet.create({

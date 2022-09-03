@@ -1,5 +1,5 @@
 import { StyleSheet, Text, Image, TextInput, View, SafeAreaView, Pressable } from 'react-native'
-import React, { Children } from 'react'
+import React, { Children, useState } from 'react'
 import { colors } from '../../common/colors'
 
 import { Dimensions } from "react-native";
@@ -26,23 +26,20 @@ const rules = {
 }
 
 const Login = (props) => {
-  const test = "# Don't have an account? **Sign up**"
-  const { navigation } = props
+  const test:string = "# Don't have an account? **Sign up**";
+  const [password, setPassword] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
 
-  
+  const { navigation } = props;
 
-  const handleForgotPassword = () => {
-    navigation.navigate("ForgotPassword");
-  }
+  const handleForgotPassword = () => navigation.navigate("ForgotPassword");
 
-  const handleLogIn = () => {
-    navigation.navigate("Home");
-  }
+  const handleLogIn = () => navigation.navigate("Home");
 
-  const handleSignUp = () => {
-    navigation.navigate("SignUp");
-  }
+  const handleSignUp = () => navigation.navigate("SignUp");
 
+  const onChangeEmail = (text:string) => setEmail(text)
+  const onChangePassword = (text:string) => setPassword(text)
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -55,8 +52,19 @@ const Login = (props) => {
           />
         </View>
         <View style={{ flex: .3, padding: 10 }}>
-          <CHTextInput placeholder={"Email"} style={styles.textInputStyle} />
-          <CHTextInput placeholder={"Password"} style={styles.textInputStyle} />
+          <CHTextInput
+            value={email} 
+            onChangeText={onChangeEmail}
+            placeholder={"Email"} 
+            style={styles.textInputStyle} 
+            />
+          <CHTextInput 
+            value={password}
+            onChangeText={onChangePassword}
+            placeholder={"Password"} 
+            secureTextEntry={true}
+            style={styles.textInputStyle} 
+            />
           <View style={styles.containerForgotPass}>
             <Pressable onPress={handleForgotPassword}>
               <Text style={styles.textForgotPass}>Forgot Password?</Text>

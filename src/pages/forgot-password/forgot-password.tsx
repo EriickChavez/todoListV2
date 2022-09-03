@@ -1,33 +1,18 @@
-import { StyleSheet, Text, Image, TextInput, View, SafeAreaView } from 'react-native'
-import React, { Children } from 'react'
+import { StyleSheet, Text, Image, View, SafeAreaView } from 'react-native'
+import React from 'react'
 import { colors } from '../../common/colors'
 
 import { Dimensions } from "react-native";
 import CHTextInput from "../../common/CHTextInput/CHTextInput";
 import CHButtonGeneric from "../../common/CHButtonGeneric/CHButtonGeneric";
 import { images } from '../../common/images';
-import Markdown, { getUniqueID } from 'react-native-markdown-renderer';
 
 const dim = Dimensions.get('screen')
 
-const rules = {
+type Props = {}
 
-  heading1: (_, children) => {
-    return (
-      <Text key={getUniqueID()} style={styles.textForgotPass}>
-        {children}
-      </Text>
-    )
-  },
-  strong: (_, children) => {
-    return (
-      <Text key={getUniqueID()} style={[styles.textForgotPass, { color: "#F79E89" }]}>{children}</Text>
-    )
-  }
-}
-
-const Login = () => {
-  const test = "# Don't have an account? **Sign up**"
+const ForgotPassword = (props:Props) => {
+  
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={{ flex: 1 }}>
@@ -52,7 +37,7 @@ const Login = () => {
   )
 }
 
-export default Login
+export default ForgotPassword
 
 const styles = StyleSheet.create({
   safeArea: {

@@ -1,7 +1,9 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
-import React from 'react'
+import React, { useState } from 'react'
 import CHTextInput from '../../common/CHTextInput/CHTextInput'
+import CHButtonGeneric from '../../common/CHButtonGeneric/CHButtonGeneric'
 import { colors } from '../../common/colors'
+import { getUniqueID } from 'react-native-markdown-renderer'
 
 export type Props = {
     name?: string,
@@ -9,27 +11,46 @@ export type Props = {
     color?: string,
     style?: Object,
     button?: boolean,
-    onPress?: () => null
+    idTask?: string,
+    addTask?: () => null,
+    editTask: () => null
 }
 
 const FullScreenTask = (props) => {
-
-    const {id, title, description} = props.route.params
+    // const {id, title, description, addTask, editTask} = props.route.params
+    const [task, setTask] = useState( props.route.params || {id: getUniqueID(), title:'', description:''} );
+    const {id, title, description} = task;
     
+    const onChangeTitle = (text:string) => {setTask({...task, title:text})}
+    const onChangeDescription = (text:string) => {setTask({...task, description:text})}
+
+    const onPress = () => {
+        if(!!props.route.params){
+            /* EDIT */
+        }else{
+            /* NEW */
+            props.navigation.goBack();
+        }
+    }
+
     return (
         <SafeAreaView style={styles.safeArea}>
             <View style={styles.safeArea}>
                 <CHTextInput
                     style={styles.input}
-                    placeholder={id+" Title"}
+                    placeholder={"Title"}
+                    value={title}
                     placeholderTextColor={"#DDDDDD"}
+                    onChangeText={onChangeTitle}
                 />
 
                 <CHTextInput
                     style={[styles.input, styles.textArea]}
                     multiline={true}
-                    placeholder={id+" Description"}
+                    value={description}
+                    placeholder={"Description"}
                     placeholderTextColor={"#DDDDDD"}
+                    onChangeText={onChangeDescription}
                 />
 
                 <View style={[styles.input, styles.inputDate, styles.inputActive]}>
@@ -47,6 +68,13 @@ const FullScreenTask = (props) => {
                         Add Image (optional)
                     </Text>
                 </View>
+
+            <CHButtonGeneric 
+                text={"Add Task"}
+                BG_Color={'#FFFFFF'}
+                TXT_Color={'#F79E89'}
+                onPress={onPress}
+            />
 
             </View>
         </SafeAreaView>

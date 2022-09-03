@@ -14,7 +14,7 @@ const CHToolbar = ({
 
     const renderTitle = () => {
         return (
-            <View style={styles.title}>
+            <View /* style={styles.title}*/ >
                 <Text style={styles.title}>{title.toUpperCase()}</Text>
             </View>
         )
@@ -29,7 +29,7 @@ const CHToolbar = ({
     const renderSettings = () => {
         return (
             <View style={styles.settings}>
-                <Icon size={24} name={"settings"} button={true} />
+                <Icon size={24} name={"settings"} button={true} color={'#E6740B'} />
             </View>
         )
     }
