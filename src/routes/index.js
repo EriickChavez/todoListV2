@@ -6,7 +6,7 @@ import ForgotPassword from "../pages/forgot-password/forgot-password";
 import LogIn from "../pages/log-in/Login";
 import SignUp from "../pages/sign-up/sign-up";
 import Home from "../pages/home/index";
-import FullScreenTask from "../components/tasks/fullScreen-tasks";
+import FullScreenTask from "../components/tasks/index";
 
 const Stack = createNativeStackNavigator();
 

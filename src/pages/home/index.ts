@@ -1,3 +1,11 @@
+import { connect } from 'react-redux';
 import Home from './home';
 
-export default Home
+// Get State
+const mapStateToProps = (state) => {
+    return state.tasks
+};
+
+// Conexion de componente con Redux
+
+export default connect(mapStateToProps)(Home)

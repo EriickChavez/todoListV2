@@ -8,12 +8,14 @@ export type Props = {
   task: TaskModel
   index?: number,
   onPress?: Function
+  onLongPress?: Function
 }
 
 const Tasks: React.FC<Props> = ({
   task,
   index = 0,
   onPress = () => null,
+  onLongPress = () => null,
 }) => {
   const { 
     id,
@@ -25,22 +27,27 @@ const Tasks: React.FC<Props> = ({
     createdAt
   } = task;
 
-
   const dateFormat = (date: Date) => date.toDateString()
+  try {
+    console.log("[createdAt]",createdAt);
+    
+    console.log("[]",dateFormat(createdAt));
+  } catch (err) {
+    console.log("[err]",err.message);
+    
+  }
+  
 
   return (
     <Pressable
       onPress={() => onPress(id)}
+      onLongPress={() => onLongPress(id)}
       style={[styles.container, index % 2 == 0 ? styles.color1 : styles.color2]}>
       <View style={styles.header}>
         <Text numberOfLines={1} style={styles.title}>{ title }</Text>
         <Icon name={'clock'} button size={24} color={"#FFFFFF"} />
       </View>
       <Text style={styles.description} numberOfLines={2}>
-        {
-          /* Borrar esta linea */
-          "ID: " + id + " - "
-        }
         {description}
       </Text>
 

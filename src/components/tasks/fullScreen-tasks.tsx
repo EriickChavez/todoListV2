@@ -1,5 +1,5 @@
 import { StyleSheet, Text, View, SafeAreaView } from 'react-native'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import CHTextInput from '../../common/CHTextInput/CHTextInput'
 import CHButtonGeneric from '../../common/CHButtonGeneric/CHButtonGeneric'
 import { colors } from '../../common/colors'
@@ -17,20 +17,25 @@ export type Props = {
 }
 
 const FullScreenTask = (props) => {
-    // const {id, title, description, addTask, editTask} = props.route.params
-    const [task, setTask] = useState( props.route.params || {id: getUniqueID(), title:'', description:''} );
+    const [task, setTask] = useState( props.route.params.task || {id: getUniqueID(), title:'', description:''} );
+    const isEdit = useMemo(()=> !!props.route.params.task,[props.route.params.task])
     const {id, title, description} = task;
-    
+
     const onChangeTitle = (text:string) => {setTask({...task, title:text})}
     const onChangeDescription = (text:string) => {setTask({...task, description:text})}
 
     const onPress = () => {
-        if(!!props.route.params){
+        if(isEdit){
             /* EDIT */
+            console.log("[edit]");
+            props.editTask(task)
+            
         }else{
             /* NEW */
-            props.navigation.goBack();
+            console.log("[new]");    
+            props.addTask(task)
         }
+        props.navigation.goBack();
     }
 
     return (
@@ -70,7 +75,7 @@ const FullScreenTask = (props) => {
                 </View>
 
             <CHButtonGeneric 
-                text={"Add Task"}
+                text={isEdit? "Edit Task": "Add Task"}
                 BG_Color={'#FFFFFF'}
                 TXT_Color={'#F79E89'}
                 onPress={onPress}
