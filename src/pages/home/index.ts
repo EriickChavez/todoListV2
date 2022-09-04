@@ -3,7 +3,9 @@ import Home from './home';
 
 // Get State
 const mapStateToProps = (state) => {
-    return state.tasks
+    const user = state.user.userStore;
+    const task = state.tasks.tasks;
+    return {task, user}
 };
 
 // Conexion de componente con Redux

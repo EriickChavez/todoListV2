@@ -5,11 +5,14 @@ import Icon from '../../common/svg';
 import Tasks from "../../components/home/tasks";
 import FloatingButton from "../../common/CHFloatingButton";
 import TaskModel from '../../models/TaskModel'
+import UserModel from '../../models/UserModel'
+import CHGenericBanner from '../../common/CHGenericBanner/CHGenericBanner';
 
 const Home = (props) => {
   const { navigation } = props;
 
-  const Lista:TaskModel[] = useMemo(()=> props.tasks, [props])
+  const Lista:TaskModel[] = useMemo(()=> props.task, [props])
+  const User:UserModel = useMemo(()=> props.user.userLogged, [props])
 
   const _onPress = (id:string) => {
     alert("[onPress] "+id);
@@ -35,6 +38,7 @@ const Home = (props) => {
             </View>
             <Icon name={"filter"} color={"#F76C6A"} button={true} size={34} />
           </View>
+          <CHGenericBanner />
           {
             Lista.map((e:TaskModel, i:number) => (
               <Tasks 
