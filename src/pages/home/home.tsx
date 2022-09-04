@@ -7,10 +7,7 @@ import FloatingButton from "../../common/CHFloatingButton";
 import TaskModel from '../../models/TaskModel'
 
 const Home = (props) => {
- const { navigation } = props;
-  console.log('====================================');
-  console.log("[props]",props.tasks);
-  console.log('====================================');
+  const { navigation } = props;
 
   const Lista:TaskModel[] = useMemo(()=> props.tasks, [props])
 

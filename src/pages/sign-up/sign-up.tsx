@@ -1,5 +1,5 @@
 import { StyleSheet, Text, Image, TextInput, View, SafeAreaView, Pressable } from 'react-native'
-import React, { Children } from 'react'
+import React, { Children, useState } from 'react'
 import { colors } from '../../common/colors'
 
 import { Dimensions } from "react-native";
@@ -9,6 +9,8 @@ import { images } from '../../common/images';
 import Markdown, { getUniqueID } from 'react-native-markdown-renderer';
 
 const dim = Dimensions.get('screen')
+const test:string = "# Have an account? **Log in**"
+
 
 const rules = {
 
@@ -27,12 +29,44 @@ const rules = {
 }
 
 const SignUp = (props) => {
-  const test:string = "# Have an account? **Log in**"
-  const { navigation } = props
+  
+  const { navigation, newUser } = props
+  
+  const [username, setUsername] = useState<string>('');
+  const [pass, setPassword] = useState<string>('');
+  const [confirmPass, setConfirmPass] = useState<string>('');
+  const [hasPassError, setHasPassError] = useState<boolean>(false);
 
-  const handleForgotPassword = () => navigation.navigate("ForgotPassword") 
   const handleLogIn = () => navigation.navigate("LogIn") 
-  const handleSignUp = () => alert("[handleSignUp]")
+  const handleSignUp = () => { 
+    !hasPassError && pass !== confirmPass && setHasPassError(true)
+
+
+    
+    if(hasPassError || username.trim() == '' || pass.trim() == ''){
+      return alert('Please fill Fields');
+    }
+
+    const tmp_user = {
+      username, 
+      password: pass
+    };
+    return newUser(tmp_user)
+  }
+
+  const onChangeUsername = (text:string) => setUsername(text)
+  const onChangePassword = (text:string) => setPassword(text)
+
+  const onChangePassConfirm = (text:string) => {
+    setHasPassError(false)
+    setConfirmPass(text)
+  }
+
+  const onSubmitEditing = () => {
+    if(pass !== confirmPass){
+      setHasPassError(true)
+    };
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -46,10 +80,27 @@ const SignUp = (props) => {
         </View>
         <View style={{ flex: .45, padding: 10 }}>
 
-          <CHTextInput placeholder={"Email"} style={styles.textInputStyle} />
-          <CHTextInput placeholder={"Full Name"} style={styles.textInputStyle} />
-          <CHTextInput placeholder={"Password"} style={styles.textInputStyle} />
-          <CHTextInput placeholder={"Confirm Password"} style={styles.textInputStyle} />
+          <CHTextInput 
+            onChangeText={onChangeUsername}
+            placeholder={"Username"} 
+            style={styles.textInputStyle} 
+            />
+
+          <CHTextInput 
+            onChangeText={onChangePassword}
+            placeholder={"Password"} 
+            style={styles.textInputStyle} 
+            />
+
+          <CHTextInput 
+            onChangeText={onChangePassConfirm}
+            placeholder={"Confirm Password"} 
+            onSubmitEditing={onSubmitEditing}
+            style={styles.textInputStyle} 
+            />
+            { hasPassError && <View>
+              <Text style={styles.errorPass}>The password confirmation does not match</Text>
+            </View>}
 
           <CHButtonGeneric 
             style={styles.containerNewAccount} 
@@ -95,5 +146,8 @@ const styles = StyleSheet.create({
   },
   containerNewAccount: {
     marginTop: 15
+  },
+  errorPass:{
+    color: '#FF0000'
   }
 })

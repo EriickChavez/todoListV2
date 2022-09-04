@@ -26,17 +26,8 @@ const Tasks: React.FC<Props> = ({
     type,
     createdAt
   } = task;
-
-  const dateFormat = (date: Date) => date.toDateString()
-  try {
-    console.log("[createdAt]",createdAt);
-    
-    console.log("[]",dateFormat(createdAt));
-  } catch (err) {
-    console.log("[err]",err.message);
-    
-  }
   
+  const dateFormat = (date: Date) => date.toDateString()
 
   return (
     <Pressable

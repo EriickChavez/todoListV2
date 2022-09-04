@@ -4,7 +4,7 @@ import CHTextInput from '../../common/CHTextInput/CHTextInput'
 import CHButtonGeneric from '../../common/CHButtonGeneric/CHButtonGeneric'
 import { colors } from '../../common/colors'
 import { getUniqueID } from 'react-native-markdown-renderer'
-
+import TaskModel from "../../models/TaskModel";
 export type Props = {
     name?: string,
     size?: Number,
@@ -17,7 +17,7 @@ export type Props = {
 }
 
 const FullScreenTask = (props) => {
-    const [task, setTask] = useState( props.route.params.task || {id: getUniqueID(), title:'', description:''} );
+    const [task, setTask] = useState<TaskModel>( props.route.params.task || {id: getUniqueID(), title:'', description:''} );
     const isEdit = useMemo(()=> !!props.route.params.task,[props.route.params.task])
     const {id, title, description} = task;
 
@@ -27,12 +27,10 @@ const FullScreenTask = (props) => {
     const onPress = () => {
         if(isEdit){
             /* EDIT */
-            console.log("[edit]");
             props.editTask(task)
             
         }else{
-            /* NEW */
-            console.log("[new]");    
+            /* NEW */ 
             props.addTask(task)
         }
         props.navigation.goBack();

@@ -30,13 +30,15 @@ const Login = (props) => {
   const [password, setPassword] = useState<string>('');
   const [email, setEmail] = useState<string>('');
 
-  const { navigation } = props;
+  const { navigation, newUser } = props;
 
   const handleForgotPassword = () => navigation.navigate("ForgotPassword");
 
   const handleLogIn = () => navigation.navigate("Home");
 
-  const handleSignUp = () => navigation.navigate("SignUp");
+  const handleSignUp = () => {
+    navigation.navigate("SignUp");
+  }
 
   const onChangeEmail = (text:string) => setEmail(text)
   const onChangePassword = (text:string) => setPassword(text)

@@ -8,4 +8,4 @@ const mapStateToProps = (state) => {
 
 // Conexion de componente con Redux
 
-export default connect(mapStateToProps)(Home)
+export default connect(mapStateToProps, null)(Home)

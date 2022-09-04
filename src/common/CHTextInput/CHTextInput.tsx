@@ -5,7 +5,6 @@ import React from 'react'
 const CHTextInput = (props) => {
 
     const { style = {} } = props;
-
     return (
         <TextInput
             {...props}

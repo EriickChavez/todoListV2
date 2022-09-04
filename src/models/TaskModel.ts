@@ -31,6 +31,7 @@ export default class TaskModel {
         this.createdAt = new Date();
     }
 
+
     setValues(task:TaskModel){
         this.id = task.id|| getUniqueID();
         this.title = task.title || '';
