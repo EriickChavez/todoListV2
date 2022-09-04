@@ -7,7 +7,7 @@ import Welcome from './welcome'
 
 const Stack = createNativeStackNavigator();
 
-function App(props) {
+const Routes = (props) => {
     const isLogged = useMemo(() => !!props.user.userLogged, [props.user.userLogged])
     const options = { headerShown: false }
 
@@ -34,4 +34,4 @@ function App(props) {
     );
 }
 
-export default App;
+export default Routes;

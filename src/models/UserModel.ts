@@ -26,10 +26,10 @@ class UserModel {
             createdAt?: Date
         }
     ){
-        this.id = user.id || '';
+        this.id = this.id || getUniqueID();
         this.username = user.username || '';
         this.password = user.password || '';
-        this.createdAt = user.createdAt || new Date();
+        this.createdAt = this.createdAt || new Date();
     
     }
 
