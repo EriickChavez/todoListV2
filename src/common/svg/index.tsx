@@ -24,16 +24,48 @@ import IconStar1 from "./star-1";
 import IconTrash2 from "./trash-2";
 import IconDashboard from "./dashboard";
 import IconPlus from "./plus";
+import IconWarning from "./warning";
+import IconClose from "./close";
+import IconUnknown from "./unknown";
+import IconThreePoints from "./three-points";
 
 
+export type nameIcon = "book-open"
+| "calendar"
+| "check-square"
+| "chevron-left"
+| "chevron-right"
+| "clock"
+| "edit-2"
+| "eye-off"
+| "filter"
+| "image"
+| "log-out"
+| "menu"
+| "message-square"
+| "plus-circle"
+| "plus-square"
+| "search"
+| "settings"
+| "star"
+| "star-1"
+| "trash-2"
+| "dashboard"
+| "plus"
+| "warning"
+| "close"
+| "unknown"
+| "three-points"
+| string
+| undefined
 
-export type Props = {
-    name?: string,
+export interface Props {
+    name?: nameIcon,
     size?: Number,
     color?: string,
     style?: Object,
     button?: boolean,
-    onPress?: () => null
+    onPress?: Function
 }
 
 const Icon: React.FC<Props> = ({
@@ -42,7 +74,7 @@ const Icon: React.FC<Props> = ({
     color = colors.GRAY,
     style = {},
     button = false,
-    onPress = () => null,
+    onPress = () => {},
 }) => {
     if (!name) {
         return null;
@@ -54,8 +86,8 @@ const Icon: React.FC<Props> = ({
             : <Pressable onPress={onPress}>{children}</Pressable>
     }
 
-    let IconType = null;
-    switch (name) {
+    let IconType:any = null;
+    switch (name.toLowerCase()) {
         case "book-open":
             IconType = (
                 <IconBookOpen style={style} width={size} height={size} stroke={color} />
@@ -166,8 +198,25 @@ const Icon: React.FC<Props> = ({
                 <IconPlus style={style} width={size} height={size} stroke={color} />
             )
             break;
+        case "warning":
+            IconType = (
+                <IconWarning style={style} width={size} height={size} stroke={color} />
+            )
+            break;
+        case "close":
+            IconType = (
+                <IconClose style={style} width={size} height={size} stroke={color} />
+            )
+            break;
+        case "three-points":
+            IconType = (
+                <IconThreePoints style={style} width={size} height={size} stroke={color} />
+            )
+            break;
         default:
-            IconType = null;
+            IconType = (
+                <IconUnknown style={style} width={size} height={size} stroke={color} />
+            )
             break;
     }
     return (

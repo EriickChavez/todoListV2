@@ -59,7 +59,7 @@ export default class TaskModel {
         return this.URLImage;
     }
 
-    Image(){
+    Type(){
         return this.type;
     }
 

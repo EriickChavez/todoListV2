@@ -1,5 +1,5 @@
+import React, { useState } from 'react'
 import { View, Text, StyleSheet, Pressable } from 'react-native'
-import React from 'react'
 import { colors } from '../../common/colors'
 import Icon from '../../common/svg'
 import TaskModel from '../../models/TaskModel'
@@ -26,28 +26,39 @@ const Tasks: React.FC<Props> = ({
     type,
     createdAt
   } = task;
-  
+
   const dateFormat = (date: Date) => date.toDateString()
+  const [isExpanded, setIsExpanded] = useState<boolean>(false)
+
+  const changeExpanded = () => {
+    setIsExpanded(!isExpanded)
+  }
 
   return (
-    <Pressable
-      onPress={() => onPress(id)}
-      onLongPress={() => onLongPress(id)}
-      style={[styles.container, index % 2 == 0 ? styles.color1 : styles.color2]}>
-      <View style={styles.header}>
-        <Text numberOfLines={1} style={styles.title}>{ title }</Text>
-        <Icon name={'clock'} button size={24} color={"#FFFFFF"} />
-      </View>
-      <Text style={styles.description} numberOfLines={2}>
-        {description}
-      </Text>
-
-      <View>
-        <Text style={styles.createdAt}>
-          Created At {dateFormat(new Date(createdAt))}
+    <View style={styles.header}>
+      <Pressable
+        onPress={() => onPress(id)}
+        onLongPress={() => onLongPress(id)}
+        style={[styles.container, index % 2 == 0 ? styles.color1 : styles.color2]}>
+        <View style={styles.header}>
+          <Text numberOfLines={1} style={styles.title}>{ title }</Text>
+          <Icon 
+            name={'three-points'} 
+            size={24} 
+            color={"#FFFFFF"} 
+          />
+        </View>
+        <Text style={styles.description} numberOfLines={2}>
+          {description}
         </Text>
-      </View>
-    </Pressable>
+
+        <View>
+          <Text style={styles.createdAt}>
+            Created At {dateFormat(new Date(createdAt))}
+          </Text>
+        </View>
+      </Pressable>
+    </View>
   )
 }
 
@@ -57,7 +68,7 @@ const styles = StyleSheet.create({
   container: {
     width: '100%',
     paddingHorizontal: 15,
-    paddingVertical: 5,
+    paddingVertical: 10,
     borderWidth: 1,
     borderRadius: 12,
     minHeight: 100,

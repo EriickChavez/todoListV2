@@ -10,13 +10,11 @@ import CHGenericBanner from '../../common/CHGenericBanner/CHGenericBanner';
 
 const Home = (props) => {
   const { navigation } = props;
-
+  
   const Lista:TaskModel[] = useMemo(()=> props.task, [props])
   const User:UserModel = useMemo(()=> props.user.userLogged, [props])
 
-  const _onPress = (id:string) => {
-    alert("[onPress] "+id);
-  }
+  const _onPress = (id:string) => { }
   const _onLongPress = (id:string) => {
     const taskPressed = Lista.findIndex(task => task.id == id)
     navigation.navigate("FullScreenTask", { task: Lista[taskPressed] });
