@@ -12,7 +12,6 @@ const SVGComponent = (props) => (
   >
     <Path
       d="M15 18L9 12L15 6"
-      stroke="#272727"
       strokeWidth={2}
       strokeLinecap="round"
       strokeLinejoin="round"

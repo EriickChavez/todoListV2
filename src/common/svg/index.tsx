@@ -68,14 +68,16 @@ export interface Props {
     onPress?: Function
 }
 
-const Icon: React.FC<Props> = ({
-    name,
-    size,
-    color = colors.GRAY,
-    style = {},
-    button = false,
-    onPress = () => {},
-}) => {
+const Icon: React.FC<Props> = (props:Props) => {
+    const {
+        name,
+        size,
+        color = colors.GRAY,
+        style = {},
+        button = false,
+        onPress = () => {},
+    } = props;
+    
     if (!name) {
         return null;
     }
@@ -90,132 +92,132 @@ const Icon: React.FC<Props> = ({
     switch (name.toLowerCase()) {
         case "book-open":
             IconType = (
-                <IconBookOpen style={style} width={size} height={size} stroke={color} />
+                <IconBookOpen style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "calendar":
             IconType = (
-                <IconCalendar style={style} width={size} height={size} stroke={color} />
+                <IconCalendar style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "check-square":
             IconType = (
-                <IconCheckSquare style={style} width={size} height={size} stroke={color} />
+                <IconCheckSquare style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "chevron-left":
             IconType = (
-                <IconChevronRight style={style} width={size} height={size} stroke={color} />
+                <IconChevronRight style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "chevron-right":
             IconType = (
-                <IconChevronLeft style={style} width={size} height={size} stroke={color} />
+                <IconChevronLeft style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "clock":
             IconType = (
-                <IconClock style={style} width={size} height={size} stroke={color} />
+                <IconClock style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "edit-2":
             IconType = (
-                <IconEdit2 style={style} width={size} height={size} stroke={color} />
+                <IconEdit2 style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "eye-off":
             IconType = (
-                <IconEyeOff style={style} width={size} height={size} stroke={color} />
+                <IconEyeOff style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "filter":
             IconType = (
-                <IconFilter style={style} width={size} height={size} stroke={color} />
+                <IconFilter style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "image":
             IconType = (
-                <IconImage style={style} width={size} height={size} stroke={color} />
+                <IconImage style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "log-out":
             IconType = (
-                <IconLogOut style={style} width={size} height={size} stroke={color} />
+                <IconLogOut style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "menu":
             IconType = (
-                <IconMenu style={style} width={size} height={size} stroke={color} />
+                <IconMenu style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "message-square":
             IconType = (
-                <IconMessageSquare style={style} width={size} height={size} stroke={color} />
+                <IconMessageSquare style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "plus-circle":
             IconType = (
-                <IconPlusCircle style={style} width={size} height={size} stroke={color} />
+                <IconPlusCircle style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "plus-square":
             IconType = (
-                <IconPlusSquare style={style} width={size} height={size} stroke={color} />
+                <IconPlusSquare style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "search":
             IconType = (
-                <IconSearch style={style} width={size} height={size} stroke={color} />
+                <IconSearch style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "settings":
             IconType = (
-                <IconSettings style={style} width={size} height={size} stroke={color} />
+                <IconSettings style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "star":
             IconType = (
-                <IconStar style={style} width={size} height={size} stroke={color} />
+                <IconStar style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "star-1":
             IconType = (
-                <IconStar1 style={style} width={size} height={size} stroke={color} />
+                <IconStar1 style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "trash-2":
             IconType = (
-                <IconTrash2 style={style} width={size} height={size} stroke={color} />
+                <IconTrash2 style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "dashboard":
             IconType = (
-                <IconDashboard style={style} width={size} height={size} stroke={color} />
+                <IconDashboard style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "plus":
             IconType = (
-                <IconPlus style={style} width={size} height={size} stroke={color} />
+                <IconPlus style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "warning":
             IconType = (
-                <IconWarning style={style} width={size} height={size} stroke={color} />
+                <IconWarning style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "close":
             IconType = (
-                <IconClose style={style} width={size} height={size} stroke={color} />
+                <IconClose style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         case "three-points":
             IconType = (
-                <IconThreePoints style={style} width={size} height={size} stroke={color} />
+                <IconThreePoints style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
         default:
             IconType = (
-                <IconUnknown style={style} width={size} height={size} stroke={color} />
+                <IconUnknown style={style} width={size} height={size} stroke={color} {...props} />
             )
             break;
     }
