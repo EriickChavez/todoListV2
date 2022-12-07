@@ -1,13 +1,11 @@
 import { bindActionCreators } from '@reduxjs/toolkit';
 import { connect } from 'react-redux';
-import Home from './home';
+import Logout from './logout';
 import { logout } from '../../redux/action/user-action';
 
 // Get State
 const mapStateToProps = (state) => {
-    const user = state.user.userStore;
-    const task = state.tasks.tasks;
-    return { task, user }
+    return {}
 };
 
 // Conexion de componente con Redux
@@ -16,4 +14,4 @@ const mapDispatchToProps = dispatch => (
         logout
     }, dispatch)
 );
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default connect(mapStateToProps, mapDispatchToProps)(Logout)

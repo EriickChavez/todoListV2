@@ -1,13 +1,14 @@
 import { createReducer } from '@reduxjs/toolkit'
 import UserModel from '../../models/UserModel';
-import { newUser } from '../action/user-action';
+import { logout, newUser } from '../action/user-action';
 
 interface UserState {
   userStore: {
     Users: UserModel[] | any[],
     userLogged: UserModel | null,
     messageError: string | null,
-  }
+  },
+  loading: boolean
 }
 
 const InitialState: UserState = {
@@ -15,47 +16,50 @@ const InitialState: UserState = {
     Users: [],
     userLogged: null,
     messageError: null,
-  }
+  },
+  loading: false
 }
 
 const taskReducer = createReducer(InitialState, (builder) => {
-  builder.addCase(newUser, (state, action) => {
-    const isLogged = !!state.userStore.userLogged;
-    const user = new UserModel();
 
-    if (isLogged) {
-      /* Ya hay un usuario loggeado*/
-
-    } else {
-      /* Nuevo usuario*/
-      // Crear nuevo usuario
-      const tmp_user = action.payload;
-      user.createUserModelFromObject(tmp_user);
-
-      // verificar que no exista
-      const exists = false; //state.userStore.Users.find(e=> e.id == user.id);
-
-      if (exists) {
-        // Si existe el usuario marcar un error
-        state.userStore.messageError = 'User already exists';
-      } else {
-        // No existe el usuario, agregarlo y loggearlo
-        const tmp_array_users: UserModel[] = [];
-        state.userStore.Users
-        state.userStore.Users.forEach(us => {
-          tmp_array_users.push(us)
-        });
-        tmp_array_users.push(user)
-
-
-        state.userStore.Users = tmp_array_users;
-        state.userStore.userLogged = user;
-      }
-
+  /* SIGN UP */
+  builder.addCase(newUser.pending, (state, action) => {
+    state.loading = true;
+  });
+  builder.addCase(newUser.fulfilled, (state, action) => {
+    switch (action.payload.type) {
+      case TYPE_STATUS.SUCCESS:
+        state.userStore.userLogged = action.payload.user;
+        state.userStore.Users = [...state.userStore.Users, action.payload.user];
+        break;
+      case TYPE_STATUS.FAILED:
+      case TYPE_STATUS.INTERNAL_ERROR:
+        state.userStore.userLogged = null;
+        state.userStore.messageError = action.payload.message;
+        break;
     }
 
-  })
+    state.loading = false;
+    console.log({ state });
+
+  });
+  builder.addCase(newUser.rejected, (state, action) => {
+    state.loading = false;
+  });
+
+  /* LOG-OUT */
+  builder.addCase(logout, (state, action) => {
+    console.log("[logout]",{action});
+    state.userStore.userLogged = null;
+    state = InitialState;
+  });
+
 })
 
+const TYPE_STATUS = {
+  SUCCESS: 'SUCCESS',
+  INTERNAL_ERROR: 'INTERNAL_ERROR',
+  FAILED: 'FAILED'
+}
 
 export default taskReducer;

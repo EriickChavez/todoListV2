@@ -7,9 +7,10 @@ import FloatingButton from "../../common/CHFloatingButton";
 import TaskModel from '../../models/TaskModel'
 import UserModel from '../../models/UserModel'
 import CHGenericBanner from '../../common/CHGenericBanner/CHGenericBanner';
+import CHLogout from '../../components/logout/index';
 
 const Home = (props) => {
-  const { navigation } = props;
+  const { navigation, logout } = props;
   
   const Lista:TaskModel[] = useMemo(()=> props.task, [props])
   const User:UserModel = useMemo(()=> props.user.userLogged, [props])
@@ -28,6 +29,7 @@ const Home = (props) => {
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.safeArea}>
         <CHToolbar settings />
+        <CHLogout onPress={()=>{logout()}} />
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <View style={styles.title}>
