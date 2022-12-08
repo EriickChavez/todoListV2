@@ -1,14 +1,15 @@
 import FullScreenTask from './fullScreen-tasks';
 
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
 import { addTask, editTask } from "../../redux/action/task-action";
+import { ThunkDispatch, bindActionCreators, Action } from '@reduxjs/toolkit';
+import TaskModel from '../../models/TaskModel';
 
 // Set State
-const mapDispatchToProps = (dispatch) => (
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, never, Action>) => (
     bindActionCreators({
-        addTask,
-        editTask
+        addTask, //: (task: TaskModel) => dispatch(addTask(task)),
+        editTask //: (task: TaskModel) => dispatch(editTask(task)),
     }, dispatch)
 );
 // Conexion de componente con Redux

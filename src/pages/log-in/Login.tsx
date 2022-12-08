@@ -26,22 +26,24 @@ const rules = {
 }
 
 const Login = (props) => {
-  const test:string = "# Don't have an account? **Sign up**";
+  const test: string = "# Don't have an account? **Sign up**";
   const [password, setPassword] = useState<string>('');
-  const [email, setEmail] = useState<string>('');
+  const [username, setUsername] = useState<string>('');
 
-  const { navigation, newUser } = props;
+  const { navigation, loginRequest } = props;
 
   const handleForgotPassword = () => navigation.navigate("ForgotPassword");
 
-  const handleLogIn = () => navigation.navigate("Home");
+  const handleLogIn = () => {
+    loginRequest({ username, password })
+  }
 
   const handleSignUp = () => {
     navigation.navigate("SignUp");
   }
 
-  const onChangeEmail = (text:string) => setEmail(text)
-  const onChangePassword = (text:string) => setPassword(text)
+  const onChangeEmail = (text: string) => setUsername(text)
+  const onChangePassword = (text: string) => setPassword(text)
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -55,18 +57,18 @@ const Login = (props) => {
         </View>
         <View style={{ flex: .3, padding: 10 }}>
           <CHTextInput
-            value={email} 
+            value={username}
             onChangeText={onChangeEmail}
-            placeholder={"Email"} 
-            style={styles.textInputStyle} 
-            />
-          <CHTextInput 
+            placeholder={"Username"}
+            style={styles.textInputStyle}
+          />
+          <CHTextInput
             value={password}
             onChangeText={onChangePassword}
-            placeholder={"Password"} 
+            placeholder={"Password"}
             secureTextEntry={true}
-            style={styles.textInputStyle} 
-            />
+            style={styles.textInputStyle}
+          />
           <View style={styles.containerForgotPass}>
             <Pressable onPress={handleForgotPassword}>
               <Text style={styles.textForgotPass}>Forgot Password?</Text>

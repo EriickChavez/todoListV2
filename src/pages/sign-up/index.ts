@@ -1,16 +1,20 @@
 import SignUp from './sign-up';
 import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
+import { ThunkDispatch, bindActionCreators, Action } from '@reduxjs/toolkit';
+
 
 import { newUser } from "../../redux/action/user-action";
+import { IRootState } from '../../redux/reducer';
+import UserModel from '../../models/UserModel';
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state: IRootState) => {
     return state.user;
 };
 
-const mapDispatchToProps = dispatch => (
+const mapDispatchToProps = (dispatch: ThunkDispatch<any, never, Action>) => (
+
     bindActionCreators({
-        newUser
+        newUser //: (user: UserModel) => dispatch(newUser(user)),
     }, dispatch)
 );
 

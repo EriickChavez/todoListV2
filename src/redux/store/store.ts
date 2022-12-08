@@ -3,6 +3,7 @@ import { configureStore } from '@reduxjs/toolkit'
 // import { persistCombineReducers, persistReducer } from 'reduxjs-toolkit-persist';
 import { persistReducer } from "redux-persist";
 import thunk from 'redux-thunk';
+
 import reducers from "../reducer";
 
 

@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import PropType from 'prop-types'
 import Icon from "../svg/index";
@@ -9,7 +9,8 @@ const CHToolbar = ({
     trash,
     edit,
     clock,
-    back
+    back,
+    onSettigns
 }) => {
 
     const renderTitle = () => {
@@ -29,8 +30,15 @@ const CHToolbar = ({
     const renderSettings = () => {
         return (
             <View style={styles.settings}>
-                <Icon size={24} name={"settings"} button={true} color={'#E6740B'} />
+                <Icon
+                    size={24}
+                    name={"settings"}
+                    button={true}
+                    color={'#E6740B'}
+                    onPress={onSettigns}
+                />
             </View>
+
         )
     }
     const renderEdit = () => {
@@ -104,7 +112,7 @@ const styles = StyleSheet.create({
     settings: {
         width: 24,
         height: 24,
-        marginHorizontal: 3
+        marginHorizontal: 3,
     },
     trash: {
         width: 24,

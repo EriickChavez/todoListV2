@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ForgotPassword from "../pages/forgot-password/forgot-password";
-import LogIn from "../pages/log-in/Login";
+import LogIn from "../pages/log-in/index";
 import SignUp from "../pages/sign-up/index";
 import Home from "../pages/home/index";
 import FullScreenTask from "../components/tasks/index";

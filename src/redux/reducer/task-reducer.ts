@@ -2,7 +2,7 @@ import {  createReducer } from '@reduxjs/toolkit'
 import TaskModel from '../../models/TaskModel';
 import { addTask, editTask } from '../action/task-action';
 
-interface TaskState {
+export interface TaskState {
     tasks: TaskModel[]
 }
 

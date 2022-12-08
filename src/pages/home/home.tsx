@@ -24,12 +24,17 @@ const Home = (props) => {
   const showModalAddTask = () => {
     navigation.navigate("FullScreenTask",{task:null});
   }
+  const onSettigns = () => {
+    console.log("[a]");
+    
+    navigation.navigate("Settings");
+  }
 
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.safeArea}>
-        <CHToolbar settings />
-        <CHLogout onPress={()=>{logout()}} />
+        <CHToolbar settings onSettigns={onSettigns} />
+        {/* <CHLogout onPress={()=>{logout()}} /> */}
         <ScrollView showsVerticalScrollIndicator={false}>
           <View style={styles.header}>
             <View style={styles.title}>
