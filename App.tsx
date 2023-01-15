@@ -25,5 +25,5 @@ const App = (props:Props) => {
 }
 
 export default App;
-
+import Pruebas from "./pruebas";
 

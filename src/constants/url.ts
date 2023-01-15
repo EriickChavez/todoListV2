@@ -1,5 +1,5 @@
 
-const BASE_URL: string = 'http://localhost:3001/'
+const BASE_URL: string = 'http://192.168.1.35:3001/'
 const SIGN_UP: string = 'signUp/';
 const LOG_IN: string = 'login/';
 

@@ -13,3 +13,8 @@ export interface IRootState {
 }
 
 
+export const TYPE_STATUS = {
+    SUCCESS: 'SUCCESS',
+    INTERNAL_ERROR: 'INTERNAL_ERROR',
+    FAILED: 'FAILED'
+  }

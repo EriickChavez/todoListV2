@@ -10,25 +10,28 @@ import CHGenericBanner from '../../common/CHGenericBanner/CHGenericBanner';
 import CHLogout from '../../components/logout/index';
 
 const Home = (props) => {
-  const { navigation, logout } = props;
-  
-  const Lista:TaskModel[] = useMemo(()=> props.task, [props])
-  const User:UserModel = useMemo(()=> props.user.userLogged, [props])
+  const { navigation, logout, tasksRequest, user } = props;
 
-  const _onPress = (id:string) => { }
-  const _onLongPress = (id:string) => {
+  const Lista: TaskModel[] = useMemo(() => props.task, [props])
+  const User: UserModel = useMemo(() => props.user.userLogged, [props])
+
+  const _onPress = (id: string) => { }
+  const _onLongPress = (id: string) => {
     const taskPressed = Lista.findIndex(task => task.id == id)
     navigation.navigate("FullScreenTask", { task: Lista[taskPressed] });
   }
 
   const showModalAddTask = () => {
-    navigation.navigate("FullScreenTask",{task:null});
+    navigation.navigate("FullScreenTask", { task: null });
   }
   const onSettigns = () => {
-    console.log("[a]");
-    
     navigation.navigate("Settings");
   }
+
+  useEffect(() => {
+    console.log("[aa]", user)
+    tasksRequest(user.id)
+  }, [])
 
   return (
     <SafeAreaView style={styles.safeArea}>
@@ -45,12 +48,12 @@ const Home = (props) => {
           </View>
           <CHGenericBanner />
           {
-            Lista.map((e:TaskModel, i:number) => (
-              <Tasks 
-                key={i} 
-                index={i} 
+            Lista.map((e: TaskModel, i: number) => (
+              <Tasks
+                key={i}
+                index={i}
                 onLongPress={_onLongPress}
-                onPress={_onPress} 
+                onPress={_onPress}
                 task={e}
                 {...e}
               />

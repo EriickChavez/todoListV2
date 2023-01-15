@@ -4,6 +4,12 @@ import { connect } from 'react-redux';
 import { addTask, editTask } from "../../redux/action/task-action";
 import { ThunkDispatch, bindActionCreators, Action } from '@reduxjs/toolkit';
 import TaskModel from '../../models/TaskModel';
+import { IRootState } from '../../redux/reducer';
+
+const mapStateToProps = (state: IRootState) => {
+    const user = state.user.userStore.userLogged
+    return { user }
+};
 
 // Set State
 const mapDispatchToProps = (dispatch: ThunkDispatch<any, never, Action>) => (
@@ -14,4 +20,4 @@ const mapDispatchToProps = (dispatch: ThunkDispatch<any, never, Action>) => (
 );
 // Conexion de componente con Redux
 
-export default connect(null, mapDispatchToProps)(FullScreenTask)
+export default connect(mapStateToProps, mapDispatchToProps)(FullScreenTask)

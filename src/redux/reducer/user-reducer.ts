@@ -1,4 +1,5 @@
 import { createReducer } from '@reduxjs/toolkit'
+import { TYPE_STATUS } from '.';
 import UserModel from '../../models/UserModel';
 import { loginRequest, logout, newUser } from '../action/user-action';
 
@@ -21,11 +22,7 @@ const InitialState: UserState = {
 }
 
 
-const TYPE_STATUS = {
-  SUCCESS: 'SUCCESS',
-  INTERNAL_ERROR: 'INTERNAL_ERROR',
-  FAILED: 'FAILED'
-}
+
 const taskReducer = createReducer(InitialState, (builder) => {
 
   /* SIGN UP */
